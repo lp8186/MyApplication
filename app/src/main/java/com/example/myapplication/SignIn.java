@@ -181,8 +181,8 @@ public class SignIn extends AppCompatActivity {
                                                     // Sign in success, update UI with the signed-in user's information
                                                     Log.d("TAG", "createUserWithEmail:success");
                                                     currentUser = mAuth.getCurrentUser();
-                                                    uploadProfile();
                                                     userId02= currentUser.getUid();
+                                                    uploadProfile();
                                                     newUser= new User(userId02,name02,phone02,city02,description02,profile02);
                                                     refUsers.child(userId02).setValue(newUser);
                                                 } else {
