@@ -3,6 +3,12 @@ package com.example.myapplication;
 import static com.example.myapplication.FBref.FBDB;
 import static com.example.myapplication.FBref.mAuth;
 import static com.example.myapplication.FBref.refUsers;
+import static com.example.myapplication.Tabels.color1;
+import static com.example.myapplication.Tabels.gender1;
+import static com.example.myapplication.Tabels.sizeC1;
+import static com.example.myapplication.Tabels.sizeS1;
+import static com.example.myapplication.Tabels.status1;
+import static com.example.myapplication.Tabels.type1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +25,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText email1,password1;
     String email01,password01;
+    public static String uId;
+    public static ArrayList<String> g,t,sC1,sS1,s2,c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         email1= (EditText) findViewById(R.id.email1);
         password1= (EditText) findViewById(R.id.password1);
+
+        g= gender1();
+        t= type1();
+        sC1= sizeC1();
+        sS1= sizeS1();
+        s2= status1();
+        c= color1();
         
     }
 
@@ -48,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                uId= mAuth.getUid();
                                 update2(true);
                             } else {
                                 update2(false);
@@ -59,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     public void update2(boolean b1){
         if (b1) {
             Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
+            Intent temp= new Intent(this,NewItem.class);
+            startActivity(temp);
         }
         else{
             email1.setText("");

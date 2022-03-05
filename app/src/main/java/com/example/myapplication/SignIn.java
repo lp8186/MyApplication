@@ -13,6 +13,7 @@ import androidx.core.content.FileProvider;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import static com.example.myapplication.MainActivity.uId;
 public class SignIn extends AppCompatActivity {
     EditText name,phone,email2,password2,city,description;
     String userId02,name02,phone02,email02,password02,city02,description02,profile02;
@@ -52,7 +54,6 @@ public class SignIn extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 22, CAMERA_REQUEST=24;
     Uri filePath;
 
-    boolean check= false;
 
 
     @Override
@@ -67,6 +68,8 @@ public class SignIn extends AppCompatActivity {
         city= (EditText) findViewById(R.id.city);
         description= (EditText) findViewById(R.id.description);
         profile= (ImageView) findViewById(R.id.profile);
+
+
     }
     public void addPhoto(View view) {
         photo1= new AlertDialog.Builder(this);
@@ -143,55 +146,53 @@ public class SignIn extends AppCompatActivity {
     }
 
     public void singIn(View view) {
-        name02= name.getText().toString();
-        if (name02.isEmpty()){
-            Toast.makeText(this, "Enter your name", Toast.LENGTH_SHORT).show();
+        if (!(checkProfile)){
+            Toast.makeText(this, "Enter a photo", Toast.LENGTH_SHORT).show();
         }
         else{
-            phone02= phone.getText().toString();
-            if (phone02.isEmpty()){
-                Toast.makeText(this, "Enter your phone", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                email02= email2.getText().toString();
-                if (email02.isEmpty()){
-                    Toast.makeText(this, "Enter your mail", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    password02=password2.getText().toString();
-                    if (password02.isEmpty()){
-                        Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        city02= city.getText().toString();
-                        if (city02.isEmpty()){
-                            Toast.makeText(this, "Enter your city", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
-                            if (!(checkProfile)){
-                                Toast.makeText(this, "Enter a photo", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                description02= description.getText().toString();
-                                mAuth.createUserWithEmailAndPassword(email02, password02)
-                                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                if (task.isSuccessful()) {
-                                                    // Sign in success, update UI with the signed-in user's information
-                                                    Log.d("TAG", "createUserWithEmail:success");
-                                                    currentUser = mAuth.getCurrentUser();
-                                                    userId02= currentUser.getUid();
-                                                    uploadProfile();
-                                                    newUser= new User(userId02,name02,phone02,city02,description02,profile02);
-                                                    refUsers.child(userId02).setValue(newUser);
-                                                } else {
-                                                    // If sign in fails, display a message to the user.
-                                                    Log.w("TAG", "createUserWithEmail:failure", task.getException());
-                                                    Toast.makeText(SignIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+            profile02= filePath.getPath();
+            name02 = name.getText().toString();
+            if (name02.isEmpty()) {
+                Toast.makeText(this, "Enter your name", Toast.LENGTH_SHORT).show();
+            } else {
+                phone02 = phone.getText().toString();
+                if (phone02.isEmpty()) {
+                    Toast.makeText(this, "Enter your phone", Toast.LENGTH_SHORT).show();
+                } else {
+                    email02 = email2.getText().toString();
+                    if (email02.isEmpty()) {
+                        Toast.makeText(this, "Enter your mail", Toast.LENGTH_SHORT).show();
+                    } else {
+                        password02 = password2.getText().toString();
+                        if (password02.isEmpty()) {
+                            Toast.makeText(this, "Enter a password", Toast.LENGTH_SHORT).show();
+                        } else {
+                            city02 = city.getText().toString();
+                            if (city02.isEmpty()) {
+                                Toast.makeText(this, "Enter your city", Toast.LENGTH_SHORT).show();
+                            } else {
+                                    description02 = description.getText().toString();
+                                    mAuth.createUserWithEmailAndPassword(email02, password02)
+                                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if (task.isSuccessful()) {
+                                                        // Sign in success, update UI with the signed-in user's information
+                                                        Log.d("TAG", "createUserWithEmail:success");
+                                                        currentUser = mAuth.getCurrentUser();
+                                                        userId02 = currentUser.getUid();
+                                                        uId = currentUser.getUid();
+                                                        uploadProfile();
+                                                        newUser = new User(userId02, name02, phone02, city02, description02, profile02);
+                                                        refUsers.child(userId02).setValue(newUser);
+                                                        createSharedPreferences();
+                                                    } else {
+                                                        // If sign in fails, display a message to the user.
+                                                        Log.w("TAG", "createUserWithEmail:failure", task.getException());
+                                                        Toast.makeText(SignIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
 
                             }
                         }
@@ -200,7 +201,6 @@ public class SignIn extends AppCompatActivity {
             }
         }
     }
-
     private void uploadProfile() {
         if (filePath != null) {
             ProgressDialog progressDialog = new ProgressDialog(this);
@@ -215,7 +215,6 @@ public class SignIn extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Toast.makeText(SignIn.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-                            profile02= filePath.toString();
                         }
                     })
 
@@ -240,5 +239,19 @@ public class SignIn extends AppCompatActivity {
                                 }
                             });
         }
+    }
+    public void createSharedPreferences(){
+        SharedPreferences settings=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=settings.edit();
+        editor.putInt("counter",0);
+        editor.putInt("gender",0);
+        editor.putInt("type",0);
+        editor.putInt("status",0);
+        editor.putInt("color",0);
+        editor.putInt("size",555);
+        editor.commit();
+
+        Intent temp1= new Intent(this,NewItem.class);
+        startActivity(temp1);
     }
 }
