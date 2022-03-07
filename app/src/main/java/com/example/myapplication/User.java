@@ -16,6 +16,14 @@ public class User {
         this.description= description;
         this.photo= photo;
     }
+    public User(){
+        this.userId= null;
+        this.name= null;
+        this.phone= null;
+        this.city= null;
+        this.description= null;
+        this.photo= null;
+    }
     public String getUserId(){return userId;}
     public String getName(){
         return name;
@@ -33,6 +41,7 @@ public class User {
         return photo;
     }
 
+    public void setUserId(String userId){this.userId=userId;}
     public void setName(String name){
         this.name=name;
     }
