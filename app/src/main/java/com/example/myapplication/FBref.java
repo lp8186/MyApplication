@@ -19,4 +19,7 @@ public class FBref {
     public static FirebaseDatabase FBDB= FirebaseDatabase.getInstance();
     public static DatabaseReference refUsers= FBDB.getReference("Users");
     public static DatabaseReference refItemsA= FBDB.getReference("ItemsA");
+    public static DatabaseReference refItems= FBDB.getReference("Items");
+
+    public static DatabaseReference refItemsA2,refItemsA3;
 }

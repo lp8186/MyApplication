@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     String email01,password01;
     public static String uId;
     public static ArrayList<String> g,t,sC1,sS1,s2,c;
+    public static Item singleItem= new Item(), singleItem2= new Item();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void update2(boolean b1){
         if (b1) {
             Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
-            Intent temp= new Intent(this,NewItem.class);
+            Intent temp= new Intent(this,AllItems.class);
             startActivity(temp);
         }
         else{
