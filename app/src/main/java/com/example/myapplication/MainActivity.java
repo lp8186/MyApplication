@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText email1,password1;
     String email01,password01;
-    public static String uId;
+    public static String uId, uId2;
     public static ArrayList<String> g,t,sC1,sS1,s2,c;
     public static Item singleItem= new Item(), singleItem2= new Item();
     @Override

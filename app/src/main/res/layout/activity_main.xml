@@ -36,7 +36,8 @@
             android:layout_height="0dp"
             android:layout_weight="10"
             android:ems="10"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:hint="E-mail"/>
 
         <EditText
             android:id="@+id/password1"
@@ -44,7 +45,8 @@
             android:layout_height="0dp"
             android:layout_weight="10"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:hint="Password"/>
 
         <Button
             android:layout_width="match_parent"
