@@ -3,18 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1285" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.194" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/drawable/ic_baseline_person_add_24.xml" value="0.1285" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_all_items.xml" value="0.13496376811594202" />
-        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.10280797101449275" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_enter_screen.xml" value="0.22" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_new_item.xml" value="0.18" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_sign_in.xml" value="0.18" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_single_item.xml" value="0.13496376811594202" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_single_item2.xml" value="0.11141304347826086" />
-        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_sorting.xml" value="0.13496376811594202" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_sorting.xml" value="0.2" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_sorting2.xml" value="0.16" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_update_item.xml" value="0.11141304347826086" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_user_profile.xml" value="0.18" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/activity_user_profile2.xml" value="0.11141304347826086" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/custom_lv.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/layout/toolbar.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/MyApplication/app/src/main/res/menu/main.xml" value="0.1921875" />
       </map>
     </option>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".SignIn">
 
     <Space
@@ -33,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="40"
-                app:srcCompat="@android:drawable/sym_def_app_icon" />
+                app:srcCompat="@drawable/ic_baseline_person_add_24" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -46,6 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="70"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:ems="10"
                     android:hint="Description"
                     android:inputType="textPersonName" />
@@ -54,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="30"
+                    android:backgroundTint="@color/lightBlue"
                     android:text="Add photo"
                     android:onClick="addPhoto"/>
 
@@ -66,6 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName" />
@@ -75,6 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="Phone"
             android:inputType="phone" />
@@ -84,6 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="Email"
             android:inputType="textEmailAddress" />
@@ -93,6 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword" />
@@ -102,6 +114,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="8"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:ems="10"
             android:hint="City"
             android:inputType="textPersonName" />
@@ -110,6 +124,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
+            android:backgroundTint="@color/lightBlue"
             android:text="Sing in"
             android:onClick="singIn"/>
 
