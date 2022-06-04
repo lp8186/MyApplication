@@ -158,7 +158,11 @@ public class SignIn extends AppCompatActivity {
                 phone02 = phone.getText().toString();
                 if (phone02.isEmpty()) {
                     Toast.makeText(this, "Enter your phone", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else if(checkPhoneNum()){
+                    Toast.makeText(this, "Wrong phone num", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     email02 = email2.getText().toString();
                     if (email02.isEmpty()) {
                         Toast.makeText(this, "Enter your mail", Toast.LENGTH_SHORT).show();
@@ -183,7 +187,7 @@ public class SignIn extends AppCompatActivity {
                                                         userId02 = currentUser.getUid();
                                                         uId = currentUser.getUid();
                                                         uploadProfile();
-                                                        newUser = new User(userId02, name02, phone02, city02, description02, profile02);
+                                                        newUser = new User(userId02, name02, phone02, city02, description02, profile02,0);
                                                         refUsers.child(userId02).setValue(newUser);
                                                         createSharedPreferences();
                                                     } else {
@@ -200,6 +204,13 @@ public class SignIn extends AppCompatActivity {
                 }
             }
         }
+    }
+    private boolean checkPhoneNum(){
+        if (phone02.startsWith("05")){
+            if (phone02.length()==10)
+                return false;
+        }
+        return true;
     }
     private void uploadProfile() {
         if (filePath != null) {
@@ -243,7 +254,7 @@ public class SignIn extends AppCompatActivity {
     public void createSharedPreferences(){
         SharedPreferences settings=getSharedPreferences("SortingInfo",MODE_PRIVATE);
         SharedPreferences.Editor editor=settings.edit();
-        editor.putInt("counter",0);
+        //editor.putInt("counter",0);
         editor.putInt("gender",0);
         editor.putInt("type",0);
         editor.putInt("status",0);
