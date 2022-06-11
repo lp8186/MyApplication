@@ -28,6 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * Main Activity.
+ * @author		Liad Peretz <lp8186@bs.amalnet.k12.il>
+ * @version     2.0
+ * @since		14/02/2022
+ * Short Description- In this Activity the user connects to the application with Firebase Authentication.
+ */
+
 public class MainActivity extends AppCompatActivity {
     EditText email1,password1;
     String email01,password01;
@@ -51,6 +59,15 @@ public class MainActivity extends AppCompatActivity {
         
     }
 
+    /**
+     * LogIn.
+     * Short description- Checks if the user has entered an email and password.
+     * If he did not enter, an appropriate message is displayed to the user. Otherwise it checks with Firebase Authentication if there is a user with the entered email and password.
+     * If there is no such user, an error message appears. On the other hand, if there is a user, it is transferred to the activity "AllItems".
+     * <p>
+     *      View view
+     * @param view- the chosen item.
+     */
     public void logIn(View view) {
         email01= email1.getText().toString();
         password01= password1.getText().toString();
@@ -88,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * NewAccount.
+     * Short description- Moves from this activity to the activity "signIn".
+     * <p>
+     *      View view
+     * @param view- the chosen item.
+     */
     public void newAccount(View view) {
         Intent temp= new Intent(this,SignIn.class);
         startActivity(temp);

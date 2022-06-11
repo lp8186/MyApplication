@@ -7,6 +7,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+/**
+ * FBref.
+ * @author		Liad Peretz <lp8186@bs.amalnet.k12.il>
+ * @version     2.0
+ * @since		14/02/2022
+ * Short Description- This class contains references to Firebase.
+ */
+
 public class FBref {
     public static FirebaseAuth mAuth= FirebaseAuth.getInstance();
     public static FirebaseUser currentUser;

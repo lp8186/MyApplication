@@ -42,6 +42,15 @@ import java.util.Date;
 import java.util.UUID;
 
 import static com.example.myapplication.MainActivity.uId;
+
+/**
+ * Sign In.
+ * @author		Liad Peretz <lp8186@bs.amalnet.k12.il>
+ * @version     2.0
+ * @since		14/02/2022
+ * Short Description- In this activity a new user sign in to the app.
+ */
+
 public class SignIn extends AppCompatActivity {
     EditText name,phone,email2,password2,city,description;
     String userId02,name02,phone02,email02,password02,city02,description02,profile02;
@@ -71,12 +80,20 @@ public class SignIn extends AppCompatActivity {
 
 
     }
+
+    /**
+     * AddPhoto.
+     * Short description- Checks where the user wants to upload the image from- Camera or Gallery.
+     * <p>
+     *      View view
+     * @param view- the chosen item.
+     */
     public void addPhoto(View view) {
         photo1= new AlertDialog.Builder(this);
         photo1.setCancelable(false);
         photo1.setTitle("Add photo");
         photo1.setMessage("From where would you like to upload your photo?");
-        photo1.setPositiveButton("Camara", new DialogInterface.OnClickListener() {
+        photo1.setPositiveButton("Camera", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 camera();
@@ -92,12 +109,22 @@ public class SignIn extends AppCompatActivity {
         photo01.show();
 
     }
+
+    /**
+     * Gallery.
+     * Short description- Moves from this activity to Gallery.
+     */
     public void gallery(){
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Image from here"), PICK_IMAGE_REQUEST);
     }
+
+    /**
+     * Camera.
+     * Short description- Moves from this activity to Camera.
+     */
     public void camera(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photoFile = null;
@@ -145,6 +172,15 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
+    /**
+     * SingIn.
+     * Short description- Checks if the user has filled in all the required fields.
+     * If the user has not filled in, a message is displayed to him.
+     * Otherwise it registers the user in the Firebase Authentication service and uploads the new user to the database under the "Users" branch.
+     * <p>
+     *      View view
+     * @param view- the chosen item.
+     */
     public void singIn(View view) {
         if (!(checkProfile)){
             Toast.makeText(this, "Enter a photo", Toast.LENGTH_SHORT).show();
@@ -205,6 +241,12 @@ public class SignIn extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     * CheckPhoneNum.
+     * Short descriptions- Checks whether the phone num entered by the user is real (according to the conditions of a telephone number in Israel).
+     * @return true if the phone num is real, false if not.
+     */
     private boolean checkPhoneNum(){
         if (phone02.startsWith("05")){
             if (phone02.length()==10)
@@ -212,6 +254,11 @@ public class SignIn extends AppCompatActivity {
         }
         return true;
     }
+
+    /**
+     * UploadProfile.
+     * Short description- Uploads the user's profile image to Firebase Storage.
+     */
     private void uploadProfile() {
         if (filePath != null) {
             ProgressDialog progressDialog = new ProgressDialog(this);
@@ -251,6 +298,11 @@ public class SignIn extends AppCompatActivity {
                             });
         }
     }
+
+    /**
+     * CreateSharedPreferences.
+     * Short description- Creates Shared Preferences.
+     */
     public void createSharedPreferences(){
         SharedPreferences settings=getSharedPreferences("SortingInfo",MODE_PRIVATE);
         SharedPreferences.Editor editor=settings.edit();
