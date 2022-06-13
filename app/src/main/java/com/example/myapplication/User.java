@@ -1,5 +1,4 @@
 package com.example.myapplication;
-
 /**
  * User.
  * @author		Liad Peretz <lp8186@bs.amalnet.k12.il>
