@@ -134,9 +134,9 @@ public class UserProfile extends AppCompatActivity implements AdapterView.OnItem
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent move= new Intent(this,SingleItem.class);
+        Intent moveToSingleItem2= new Intent(this,SingleItem.class);
         singleItem= userItems.get(i);
-        startActivity(move);
+        startActivity(moveToSingleItem2);
     }
 
     /**
@@ -147,8 +147,8 @@ public class UserProfile extends AppCompatActivity implements AdapterView.OnItem
      * @param view- the chosen item.
      */
     public void moveToNewItem(View view) {
-        Intent move2= new Intent(this,NewItem.class);
-        startActivity(move2);
+        Intent moveToNewItem2= new Intent(this,NewItem.class);
+        startActivity(moveToNewItem2);
     }
 
     /**

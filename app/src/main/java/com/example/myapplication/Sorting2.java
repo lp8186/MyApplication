@@ -32,18 +32,21 @@ import android.widget.Toast;
 public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView sortInfo2;
     Spinner spinnerS22, spinnerC2, spinnerS12;
+    //spinnerS22- status, spinnerC2- color, spinnerS12- size.
+
     Switch switch1;
 
     String info2="Sorting:";
     int one=0,two=0,three=0,four=0,five=555;
 
+    //In order to make sure the user chose gender and type.
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences temp= getSharedPreferences("SortingInfo",MODE_PRIVATE);
         if((temp.getInt("gender",1000)==0)||(temp.getInt("type",1000)==0)){
-            Intent next= new Intent(this, Sorting.class);
-            startActivity(next);
+            Intent backToSorting1= new Intent(this, Sorting.class);
+            startActivity(backToSorting1);
         }
     }
 
@@ -64,13 +67,9 @@ public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSel
         ArrayAdapter<String> adp2= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,c);
         spinnerC2.setAdapter(adp2);
 
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-            one =temp.getInt("gender", 1000);
-            two = temp.getInt("type", 1000);
-            //three = 0;
-            //four = 0;
-            //five= 555;
-            //לבדוק למה הוא מקבל 0 במקום555 במידה
+        SharedPreferences temp2=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+            one =temp2.getInt("gender", 1000);
+            two = temp2.getInt("type", 1000);
             updateTextView2();
 
 
@@ -125,7 +124,6 @@ public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSel
         if (adapterView==spinnerS12){
             five=i;
             updateTextView2();
-
         }
     }
     @Override
@@ -163,16 +161,16 @@ public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSel
      * @param view- the chosen item.
      */
     public void startOver2(View view) {
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=temp.edit();
+        SharedPreferences temp3=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=temp3.edit();
         editor.putInt("gender",0);
         editor.putInt("type",0);
         editor.putInt("status",0);
         editor.putInt("color",0);
         editor.putInt("size",555);
         editor.commit();
-        Intent next= new Intent(this, Sorting.class);
-        startActivity(next);
+        Intent backToSorting2= new Intent(this, Sorting.class);
+        startActivity(backToSorting2);
     }
 
     /**
@@ -183,14 +181,14 @@ public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSel
      * @param view- the chosen item.
      */
     public void done(View view) {
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=temp.edit();
+        SharedPreferences temp4=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=temp4.edit();
         editor.putInt("status",three);
         editor.putInt("color",four);
         editor.putInt("size",five);
         editor.commit();
-        Intent next= new Intent(this, AllItems.class);
-        startActivity(next);
+        Intent moveToAllItems3= new Intent(this, AllItems.class);
+        startActivity(moveToAllItems3);
     }
 
     /**
@@ -198,7 +196,6 @@ public class Sorting2 extends AppCompatActivity implements AdapterView.OnItemSel
      * Short description- Updates and displays the sort information.
      */
     public void updateTextView2(){
-        Toast.makeText(this, String.valueOf(five), Toast.LENGTH_SHORT).show();
         info2= "Sorting:";
         if (one!=0)
             info2= info2+"\n"+g.get(one);

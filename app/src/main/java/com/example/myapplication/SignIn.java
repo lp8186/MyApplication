@@ -138,6 +138,11 @@ public class SignIn extends AppCompatActivity {
             startActivityForResult(takePictureIntent, CAMERA_REQUEST);
         }
     }
+    /**
+     * CreateImageFile.
+     * Short description- Turns the image taken through the camera into a file in order to get the highest quality image possible.
+     * @return the file it created
+     */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -272,7 +277,7 @@ public class SignIn extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(SignIn.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignIn.this, "Hello new user!", Toast.LENGTH_SHORT).show();
                         }
                     })
 
@@ -280,7 +285,6 @@ public class SignIn extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e)
                         {
-
                             // Error, Image not uploaded
                             progressDialog.dismiss();
                             Toast.makeText(SignIn.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -314,7 +318,7 @@ public class SignIn extends AppCompatActivity {
         editor.putInt("size",555);
         editor.commit();
 
-        Intent temp1= new Intent(this,NewItem.class);
-        startActivity(temp1);
+        Intent moveToAllItems2= new Intent(this,AllItems.class);
+        startActivity(moveToAllItems2);
     }
 }

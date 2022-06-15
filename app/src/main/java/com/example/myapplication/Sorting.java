@@ -39,6 +39,7 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
     boolean check;
 
     AlertDialog.Builder adb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     sortInfo.setText(info);
-                    SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+                    //SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
                     SharedPreferences.Editor editor=temp.edit();
                     editor.putInt("gender",0);
                     editor.putInt("type",0);
@@ -78,19 +79,14 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
             adb.setNegativeButton("no", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent back= new Intent(Sorting.this, AllItems.class);
-                    startActivity(back);
+                    Intent backToAllItems1= new Intent(Sorting.this, AllItems.class);
+                    startActivity(backToAllItems1);
                 }
             });
             AlertDialog ad= adb.create();
             ad.show();
-            /*one =temp.getInt("gender", 1000);
-            two = temp.getInt("type", 1000);
-            three = temp.getInt("status", 1000);
-            four = temp.getInt("color", 1000);
-            five= temp.getInt("size",1000);
-            updateTextView();*/
         }
+
         options.setOnItemClickListener(this);
         options.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -114,8 +110,7 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if (!(check)){
             if (i!=0){
-                //updateSortInfo2(i);
-                //תוספת:
+                //this choice will be saved on Shared Preferences after the user selects a type.
                 one=i;
                 check=true;
                 ArrayAdapter<String> adp2= new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,t);
@@ -126,8 +121,8 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
             if (i!=0){
                 two= i;
                 updateSortInfo2();
-                Intent next= new Intent(this, Sorting2.class);
-                startActivity(next);
+                Intent nextSorting= new Intent(this, Sorting2.class);
+                startActivity(nextSorting);
             }
 
         }
@@ -138,24 +133,8 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
      * Short description- Updates the sort information in Shared Preferences.
      */
     public void updateSortInfo2(){
-        /*if (!(check)){
-            SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-            SharedPreferences.Editor editor=temp.edit();
-            editor.putInt("gender",num);
-            editor.commit();
-            one= num;
-            updateTextView();
-        }
-        else{
-            SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-            SharedPreferences.Editor editor=temp.edit();
-            editor.putInt("type",num);
-            editor.commit();
-            two=num;
-            updateTextView();
-        }*/
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=temp.edit();
+        SharedPreferences temp2=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=temp2.edit();
         editor.putInt("gender",one);
         editor.putInt("type",two);
         editor.commit();
@@ -172,8 +151,8 @@ public class Sorting extends AppCompatActivity implements AdapterView.OnItemClic
     public void startOver(View view) {
         info= "Sorting:";
         sortInfo.setText(info);
-        SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=temp.edit();
+        SharedPreferences temp3=getSharedPreferences("SortingInfo",MODE_PRIVATE);
+        SharedPreferences.Editor editor=temp3.edit();
         editor.putInt("gender",0);
         editor.putInt("type",0);
         editor.putInt("status",0);

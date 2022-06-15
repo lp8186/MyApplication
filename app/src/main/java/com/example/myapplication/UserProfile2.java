@@ -127,9 +127,9 @@ public class UserProfile2 extends AppCompatActivity implements AdapterView.OnIte
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent move= new Intent(this,SingleItem2.class);
+        Intent moveToSingleItem3= new Intent(this,SingleItem2.class);
         singleItem2= sellerItems.get(i);
-        startActivity(move);
+        startActivity(moveToSingleItem3);
     }
 
     /**

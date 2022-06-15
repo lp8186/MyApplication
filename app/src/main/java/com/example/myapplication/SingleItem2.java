@@ -115,8 +115,8 @@ public class SingleItem2 extends AppCompatActivity {
      * @param view- the chosen item.
      */
     public void moveToProfile(View view) {
-        Intent move= new Intent(this,UserProfile2.class);
-        startActivity(move);
+        Intent moveToUserProfile3= new Intent(this,UserProfile2.class);
+        startActivity(moveToUserProfile3);
     }
 
     /**
@@ -158,13 +158,10 @@ public class SingleItem2 extends AppCompatActivity {
     }
 
     protected void sendSMSmessage(String textMessage){
-        //if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
             }
-        //}
-        //לבדוק מה הקטע של השורה
     }
     @Override
     public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
@@ -177,7 +174,7 @@ public class SingleItem2 extends AppCompatActivity {
                     smsManager.sendTextMessage(phoneMessage, null, textMessage, null, null);
                     Toast.makeText(getApplicationContext(), "SMS sent.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "SMS faild, please try again.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "SMS failed, please try again.", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
@@ -193,9 +190,9 @@ public class SingleItem2 extends AppCompatActivity {
      * @param view- the chosen item.
      */
     public void moveToWhatsapp(View view) {
-        Intent intent= new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("https://wa.me/"+phoneMessage));
-        startActivity(intent);
+        Intent moveToWhatsapp1= new Intent(Intent.ACTION_VIEW);
+        moveToWhatsapp1.setData(Uri.parse("https://wa.me/"+phoneMessage));
+        startActivity(moveToWhatsapp1);
     }
 
     /**
@@ -244,6 +241,4 @@ public class SingleItem2 extends AppCompatActivity {
         }
         return true;
     }
-
-
 }

@@ -89,8 +89,8 @@ public class SingleItem extends AppCompatActivity {
      * @param view- the chosen item.
      */
     public void change(View view) {
-        Intent next= new Intent(this, UpdateItem.class);
-        startActivity(next);
+        Intent moveToUpdateItem1= new Intent(this, UpdateItem.class);
+        startActivity(moveToUpdateItem1);
     }
 
     /**
@@ -132,10 +132,11 @@ public class SingleItem extends AppCompatActivity {
         refItemsA3 = refItemsA2.child(String.valueOf(singleItem.getType()));
         refItemsA3.child(uId+singleItem.getIdentify()).removeValue();
 
+        singleItem.setActive(false);
         refItemsD.child(uId+(singleItem.getIdentify())).setValue(singleItem);
 
-        Intent next= new Intent(this, UserProfile.class);
-        startActivity(next);
+        Intent moveToUserProfile2= new Intent(this, UserProfile.class);
+        startActivity(moveToUserProfile2);
     }
 
     /**

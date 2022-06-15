@@ -40,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
     EditText email1,password1;
     String email01,password01;
     public static String uId, uId2;
+    //uId- the user uId from Firebase Authentication. uId2- the uId of a "future seller".
     public static ArrayList<String> g,t,sC1,sS1,s2,c;
+    //ArrayLists of all categories for item description.
+    //g- gender, t- type, sC1- size clothes, sS1- size shoes, s2- status, c- color.
     public static Item singleItem= new Item(), singleItem2= new Item();
+    //singleItem- an item that the user wants to see, his item. singleItem2- an item that the user wants to see, other user item.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         email1= (EditText) findViewById(R.id.email1);
         password1= (EditText) findViewById(R.id.password1);
 
+        //Reading from firebase database all categories for item description and save it in ArrayLists.
         g= gender1();
         t= type1();
         sC1= sizeC1();
@@ -92,16 +97,21 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
     }
+    /**
+     * Update2.
+     * Short description- Accepts if the logIn was successful.
+     * If it wasn't, an error message is displayed. Otherwise, a message is displayed and the user is moved to the activity "allItems".
+     */
     public void update2(boolean b1){
         if (b1) {
             Toast.makeText(this, "Welcome back", Toast.LENGTH_SHORT).show();
-            Intent temp= new Intent(this,AllItems.class);
-            startActivity(temp);
+            Intent moveToAllItems1= new Intent(this,AllItems.class);
+            startActivity(moveToAllItems1);
         }
         else{
             email1.setText("");
             password1.setText("");
-            Toast.makeText(this, "We have a problem", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Incorrect mail or password, try again:)", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -113,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view- the chosen item.
      */
     public void newAccount(View view) {
-        Intent temp= new Intent(this,SignIn.class);
-        startActivity(temp);
+        Intent moveToSingIn1= new Intent(this,SignIn.class);
+        startActivity(moveToSingIn1);
     }
 }

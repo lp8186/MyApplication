@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".Help">
 
     <Space
@@ -26,18 +27,29 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="30"
-            app:srcCompat="@drawable/ic_baseline_person_24" />
+            app:srcCompat="@drawable/zero_waste" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
-            android:text="TextView" />
+            android:layout_weight="15"
+            android:gravity="center"
+            android:text="Zero Waste is an app for selling clothes.
+                     As a user you can sell your clothes and buy new ones"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            android:gravity="center_horizontal"
+            android:text="The creator of this app is Liad Peretz, a 12th grade student. "
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="10" />
+            android:layout_weight="20" />
     </LinearLayout>
 
     <Space

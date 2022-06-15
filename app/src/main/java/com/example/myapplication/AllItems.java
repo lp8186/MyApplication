@@ -51,12 +51,15 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
     TextView sortInfo3;
     Spinner sort;
     Item temp3;
+
     ArrayList<Item> items= new ArrayList<>();
     ArrayList<Item> items2= new ArrayList<>();
+
     String [] sort2= {"order by place","order by price","order by size"};
     CustomAdapter customadp;
 
     Query query;
+
     int one=0, two=0, three=0, four=0, five=555;
     String info3;
 
@@ -70,10 +73,11 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
         sortInfo3= (TextView) findViewById(R.id.sortInfo3);
         sort= (Spinner) findViewById(R.id.sort);
 
+        //Puts the sorting options into the spinner
         ArrayAdapter<String> adpSort= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,sort2);
         sort.setAdapter(adpSort);
-        sort.setOnItemSelectedListener(this);
 
+        sort.setOnItemSelectedListener(this);
         itemsList.setOnItemClickListener(this);
 
         SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
@@ -104,7 +108,7 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
             updateTextView3();
             refItemsA2 = refItemsA.child(String.valueOf(one));
             refItemsA3 = refItemsA2.child(String.valueOf(two));
-            //בוודאות יש סינון של מין וסוג פריט
+            //if a gender choice is saved for sure there is also a type choice(and maybe other categories).
             if ((three == 0) && (four == 0) && (five == 555)) {
                 refItemsA3.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -262,8 +266,8 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
 
 
         }
+        //saving the order of items by place
         items2= items;
-        //הוספה
     }
 
     /**
@@ -281,19 +285,16 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent move;
+        Intent moveToSingleItem1;
         if (items.get(i).getUserId().equals(uId)){
-            move= new Intent(this,SingleItem.class);
+            moveToSingleItem1= new Intent(this,SingleItem.class);
             singleItem= items.get(i);
         }
         else{
-            move= new Intent(this,SingleItem2.class);
+            moveToSingleItem1= new Intent(this,SingleItem2.class);
             singleItem2= items.get(i);
         }
-        startActivity(move);
-        /*Intent move= new Intent(this,SingleItem2.class);
-        singleItem2= items.get(i);
-        startActivity(move);*/
+        startActivity(moveToSingleItem1);
     }
 
     /**
@@ -311,7 +312,6 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
             info3= info3+"\n"+s2.get(three);
         if (four!=0)
             info3= info3+"\n"+c.get(four);
-        Toast.makeText(AllItems.this, String.valueOf(five), Toast.LENGTH_SHORT).show();
         if (five!=555){
             if ((two==0)||(two==7)||(two==8))
                 five=555;
@@ -444,8 +444,8 @@ public class AllItems extends AppCompatActivity implements AdapterView.OnItemCli
      * @param view- the chosen item.
      */
     public void moveToSorting(View view) {
-        Intent move3= new Intent(this,Sorting.class);
-        startActivity(move3);
+        Intent moveToSorting1= new Intent(this,Sorting.class);
+        startActivity(moveToSorting1);
     }
 
     /**

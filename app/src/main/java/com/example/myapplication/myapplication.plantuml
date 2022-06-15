@@ -1,0 +1,491 @@
+@startuml
+
+title __MYAPPLICATION's Class Diagram__\n
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.AllItems {
+        ~ five : int
+        ~ four : int
+        ~ info3 : String
+        ~ items : ArrayList<Item>
+        ~ items2 : ArrayList<Item>
+        ~ itemsList : ListView
+        ~ one : int
+        ~ query : Query
+        ~ sort : Spinner
+        ~ sort2 : String[]
+        ~ sortInfo3 : TextView
+        ~ three : int
+        ~ two : int
+        + moveToSorting()
+        + onCreateOptionsMenu()
+        + onItemClick()
+        + onItemSelected()
+        + onNothingSelected()
+        + onOptionsItemSelected()
+        + updateTextView3()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.CustomAdapter {
+        ~ context : Activity
+        ~ inflter : LayoutInflater
+        ~ tempItems : ArrayList<Item>
+        + CustomAdapter()
+        + getCount()
+        + getItem()
+        + getItemId()
+        + getView()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.EnterScreen {
+        {static} - SPLASH_TIME_OUT : long
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.FBref {
+        {static} + FBDB : FirebaseDatabase
+        {static} + currentUser : FirebaseUser
+        {static} + mAuth : FirebaseAuth
+        {static} + refItems : DatabaseReference
+        {static} + refItemsA : DatabaseReference
+        {static} + refItemsA2 : DatabaseReference
+        {static} + refItemsA3 : DatabaseReference
+        {static} + refItemsD : DatabaseReference
+        {static} + refUsers : DatabaseReference
+        {static} + storage : FirebaseStorage
+        {static} + storageItem : StorageReference
+        {static} + storageReference : StorageReference
+        {static} + storageUser : StorageReference
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.Help {
+        + onCreateOptionsMenu()
+        + onOptionsItemSelected()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.Item {
+        - active : boolean
+        - color : int
+        - gender : int
+        - identify : int
+        - itemDescription : String
+        - itemPhoto : String
+        - price : int
+        - size : int
+        - status : int
+        - type : int
+        - userId : String
+        + Item()
+        + Item()
+        + getActive()
+        + getColor()
+        + getGender()
+        + getIdentify()
+        + getItemDescription()
+        + getItemPhoto()
+        + getPrice()
+        + getSize()
+        + getStatus()
+        + getType()
+        + getUserId()
+        + setActive()
+        + setColor()
+        + setGender()
+        + setIdentify()
+        + setItemDescription()
+        + setItemPhoto()
+        + setPrice()
+        + setSize()
+        + setStatus()
+        + setType()
+        + setUserId()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.MainActivity {
+        {static} + c : ArrayList<String>
+        {static} + g : ArrayList<String>
+        {static} + s2 : ArrayList<String>
+        {static} + sC1 : ArrayList<String>
+        {static} + sS1 : ArrayList<String>
+        {static} + singleItem : Item
+        {static} + singleItem2 : Item
+        {static} + t : ArrayList<String>
+        {static} + uId : String
+        {static} + uId2 : String
+        ~ email01 : String
+        ~ email1 : EditText
+        ~ password01 : String
+        ~ password1 : EditText
+        + logIn()
+        + newAccount()
+        + update2()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.NewItem {
+        ~ c2 : int
+        ~ checkItemPhoto : boolean
+        ~ filePath : Uri
+        ~ g2 : int
+        ~ itemDescription : EditText
+        ~ itemDescription02 : String
+        ~ itemIdentify : int
+        ~ itemPhoto : ImageView
+        ~ itemPhoto02 : String
+        ~ photo2 : Builder
+        ~ price : EditText
+        ~ price002 : int
+        ~ price02 : String
+        ~ query : Query
+        ~ s12 : int
+        ~ s22 : int
+        ~ spinnerC : Spinner
+        ~ spinnerG : Spinner
+        ~ spinnerS1 : Spinner
+        ~ spinnerS2 : Spinner
+        ~ spinnerT : Spinner
+        ~ t2 : int
+        ~ tempNum : int
+        - CAMERA_REQUEST : int
+        - PICK_IMAGE_REQUEST : int
+        + addPhoto2()
+        + camera()
+        + createNewItem()
+        + gallery()
+        + onCreateOptionsMenu()
+        + onItemSelected()
+        + onNothingSelected()
+        + onOptionsItemSelected()
+        # onActivityResult()
+        # onCreate()
+        - checkItemIdentify()
+        - createImageFile()
+        - updateSortInfo()
+        - uploadProfile()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.SignIn {
+        ~ checkProfile : boolean
+        ~ city : EditText
+        ~ city02 : String
+        ~ description : EditText
+        ~ description02 : String
+        ~ email02 : String
+        ~ email2 : EditText
+        ~ filePath : Uri
+        ~ name : EditText
+        ~ name02 : String
+        ~ password02 : String
+        ~ password2 : EditText
+        ~ phone : EditText
+        ~ phone02 : String
+        ~ photo1 : Builder
+        ~ profile : ImageView
+        ~ profile02 : String
+        ~ userId02 : String
+        - CAMERA_REQUEST : int
+        - PICK_IMAGE_REQUEST : int
+        + addPhoto()
+        + camera()
+        + createSharedPreferences()
+        + gallery()
+        + singIn()
+        # onActivityResult()
+        # onCreate()
+        - checkPhoneNum()
+        - createImageFile()
+        - uploadProfile()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.SingleItem {
+        ~ adb : Builder
+        ~ singleItemInformation : String
+        ~ singleItemPhoto : ImageView
+        ~ singleItemText : TextView
+        + change()
+        + delete()
+        + delete2()
+        + onCreateOptionsMenu()
+        + onOptionsItemSelected()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.SingleItem2 {
+        ~ adb : Builder
+        ~ phoneMessage : String
+        ~ query : Query
+        ~ singleItemInformation2 : String
+        ~ singleItemPhoto2 : ImageView
+        ~ singleItemText2 : TextView
+        ~ textMessage : String
+        {static} - MY_PERMISSIONS_REQUEST_SEND_SMS : int
+        + moveToProfile()
+        + moveToWhatsapp()
+        + onCreateOptionsMenu()
+        + onOptionsItemSelected()
+        + onRequestPermissionsResult()
+        + sendSMS()
+        # onCreate()
+        # sendSMSmessage()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.Sorting {
+        ~ adb : Builder
+        ~ check : boolean
+        ~ five : int
+        ~ four : int
+        ~ info : String
+        ~ one : int
+        ~ options : ListView
+        ~ sortInfo : TextView
+        ~ three : int
+        ~ two : int
+        + onCreateOptionsMenu()
+        + onItemClick()
+        + onOptionsItemSelected()
+        + startOver()
+        + updateSortInfo2()
+        + updateTextView()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.Sorting2 {
+        ~ five : int
+        ~ four : int
+        ~ info2 : String
+        ~ one : int
+        ~ sortInfo2 : TextView
+        ~ spinnerC2 : Spinner
+        ~ spinnerS12 : Spinner
+        ~ spinnerS22 : Spinner
+        ~ switch1 : Switch
+        ~ three : int
+        ~ two : int
+        + done()
+        + onItemSelected()
+        + onNothingSelected()
+        + select()
+        + startOver2()
+        + updateTextView2()
+        # onCreate()
+        # onStart()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.Tabels {
+        {static} + color : ArrayList<String>
+        {static} + gender : ArrayList<String>
+        {static} + refColor : DatabaseReference
+        {static} + refGender : DatabaseReference
+        {static} + refSize : DatabaseReference
+        {static} + refSizeC : DatabaseReference
+        {static} + refSizeS : DatabaseReference
+        {static} + refStatus : DatabaseReference
+        {static} + refTabels : DatabaseReference
+        {static} + refType : DatabaseReference
+        {static} + sizeC : ArrayList<String>
+        {static} + sizeS : ArrayList<String>
+        {static} + status : ArrayList<String>
+        {static} + type : ArrayList<String>
+        {static} + color1()
+        {static} + gender1()
+        {static} + sizeC1()
+        {static} + sizeS1()
+        {static} + status1()
+        {static} + type1()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.UpdateItem {
+        ~ adb : Builder
+        ~ c3 : int
+        ~ changePhoto : boolean
+        ~ filePath : Uri
+        ~ g3 : int
+        ~ itemDescription03 : String
+        ~ itemDescription3 : EditText
+        ~ itemIdentify3 : int
+        ~ itemPhoto03 : String
+        ~ itemPhoto3 : ImageView
+        ~ photo3 : Builder
+        ~ price003 : int
+        ~ price03 : String
+        ~ price3 : EditText
+        ~ s13 : int
+        ~ s23 : int
+        ~ spinnerC3 : Spinner
+        ~ spinnerG3 : Spinner
+        ~ spinnerS13 : Spinner
+        ~ spinnerS23 : Spinner
+        ~ spinnerT3 : Spinner
+        ~ t3 : int
+        - CAMERA_REQUEST : int
+        - PICK_IMAGE_REQUEST : int
+        + UpdateItem3()
+        + addPhoto3()
+        + camera3()
+        + gallery3()
+        + onItemSelected()
+        + onNothingSelected()
+        + update()
+        + uploadProfile3()
+        # onActivityResult()
+        # onCreate()
+        - createImageFile()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.User {
+        - city : String
+        - description : String
+        - itemsNum : int
+        - name : String
+        - phone : String
+        - photo : String
+        - userId : String
+        + User()
+        + User()
+        + getCity()
+        + getDescription()
+        + getItemsNum()
+        + getName()
+        + getPhone()
+        + getPhoto()
+        + getUserId()
+        + setCity()
+        + setDescription()
+        + setItemsNum()
+        + setName()
+        + setPhone()
+        + setPhoto()
+        + setUserId()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.UserProfile {
+        ~ lV : ListView
+        ~ query : Query
+        ~ query2 : Query
+        ~ userInfo : TextView
+        ~ userInfo2 : String
+        ~ userItems : ArrayList<Item>
+        ~ userPicture : ImageView
+        ~ userText : TextView
+        + moveToNewItem()
+        + onCreateOptionsMenu()
+        + onItemClick()
+        + onOptionsItemSelected()
+        # onCreate()
+    }
+  }
+  
+
+  namespace com.example.myapplication {
+    class com.example.myapplication.UserProfile2 {
+        ~ lV2 : ListView
+        ~ query : Query
+        ~ query2 : Query
+        ~ sellerInfo : TextView
+        ~ sellerInfo2 : String
+        ~ sellerItems : ArrayList<Item>
+        ~ sellerPicture : ImageView
+        ~ userText2 : TextView
+        + onCreateOptionsMenu()
+        + onItemClick()
+        + onOptionsItemSelected()
+        # onCreate()
+    }
+  }
+  
+
+  com.example.myapplication.AllItems .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.myapplication.AllItems .up.|> android.widget.AdapterView.OnItemSelectedListener
+  com.example.myapplication.AllItems -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.AllItems o-- com.example.myapplication.CustomAdapter : customadp
+  com.example.myapplication.AllItems o-- com.example.myapplication.Item : temp3
+  com.example.myapplication.CustomAdapter -up-|> android.widget.BaseAdapter
+  com.example.myapplication.EnterScreen -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.Help -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.NewItem .up.|> android.widget.AdapterView.OnItemSelectedListener
+  com.example.myapplication.NewItem -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.NewItem o-- com.example.myapplication.Item : newItem
+  com.example.myapplication.NewItem o-- com.example.myapplication.User : tempUser
+  com.example.myapplication.SignIn -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.SignIn o-- com.example.myapplication.User : newUser
+  com.example.myapplication.SingleItem -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.SingleItem2 -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.Sorting .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.myapplication.Sorting -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.Sorting2 .up.|> android.widget.AdapterView.OnItemSelectedListener
+  com.example.myapplication.Sorting2 -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.UpdateItem .up.|> android.widget.AdapterView.OnItemSelectedListener
+  com.example.myapplication.UpdateItem -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.UpdateItem o-- com.example.myapplication.Item : newItem
+  com.example.myapplication.UpdateItem o-- com.example.myapplication.Item : oldItem
+  com.example.myapplication.UserProfile .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.myapplication.UserProfile -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.UserProfile o-- com.example.myapplication.CustomAdapter : customadp
+  com.example.myapplication.UserProfile o-- com.example.myapplication.User : temp
+  com.example.myapplication.UserProfile o-- com.example.myapplication.Item : temp2
+  com.example.myapplication.UserProfile2 .up.|> android.widget.AdapterView.OnItemClickListener
+  com.example.myapplication.UserProfile2 -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.myapplication.UserProfile2 o-- com.example.myapplication.CustomAdapter : customadp
+  com.example.myapplication.UserProfile2 o-- com.example.myapplication.User : temp
+  com.example.myapplication.UserProfile2 o-- com.example.myapplication.Item : temp2
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

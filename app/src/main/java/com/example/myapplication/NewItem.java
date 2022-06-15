@@ -63,7 +63,7 @@ import java.util.Date;
 public class NewItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinnerG, spinnerT, spinnerS1, spinnerS2,spinnerC;
     int g2=0,t2=0,s12=555,s22=0,c2=0;
-    //שיניתי מידה ל555 במקום 100
+    //g2- gender, t2- type, s12- size, s22- status, c2- color.
 
     ImageView itemPhoto;
     EditText price, itemDescription;
@@ -79,7 +79,7 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
     Item newItem;
 
     Query query;
-    int tempNum=0;
+
     User tempUser= new User();
 
     @Override
@@ -93,11 +93,12 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
 
         spinnerG= (Spinner) findViewById(R.id.spinnerG);
         spinnerT= (Spinner) findViewById(R.id.spinnerT);
-        spinnerS1= (Spinner) findViewById(R.id.spinnerS1);//s1==size
-        spinnerS2= (Spinner) findViewById(R.id.spinnerS2);//s2== status
+        spinnerS1= (Spinner) findViewById(R.id.spinnerS1);
+        spinnerS2= (Spinner) findViewById(R.id.spinnerS2);
         spinnerC= (Spinner) findViewById(R.id.spinnerC);
 
-        spinnerS1.setVisibility(View.INVISIBLE);//only when you need an item's size you will see it
+        spinnerS1.setVisibility(View.INVISIBLE);
+        //only when you need an item's size, it will be visible.
 
         spinnerG.setOnItemSelectedListener(this);
         spinnerT.setOnItemSelectedListener(this);
@@ -117,14 +118,7 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
         ArrayAdapter<String> adp4= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,c);
         spinnerC.setAdapter(adp4);
 
-        //SharedPreferences temp2=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        //int checking=temp2.getInt("counter",1000);
-        //Toast.makeText(this, String.valueOf(checking), Toast.LENGTH_SHORT).show();
-        //itemIdentify = checkItemIdentify();
         checkItemIdentify();
-
-
-
     }
 
     /**
@@ -150,7 +144,6 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
             if ((i==0)||(i==7)||(i==8)){
                 spinnerS1.setVisibility(View.INVISIBLE);
                 s12=555;
-                //שיניתי ל555 במקום 100
             }
             else if (i==9){
                 spinnerS1.setVisibility(View.VISIBLE);
@@ -174,7 +167,6 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
         if (adapterView==spinnerC){
             c2=i;
         }
-
     }
 
     @Override
@@ -238,6 +230,12 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
             startActivityForResult(takePictureIntent, CAMERA_REQUEST);
         }
     }
+
+    /**
+     * CreateImageFile.
+     * Short description- Turns the image taken through the camera into a file in order to get the highest quality image possible.
+     * @return the file it created
+     */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -247,15 +245,6 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
-        //לנסות להוריד את הרזולוציה הגבוהה
-        //Bitmap bitmap = BitmapFactory.decodeFile(storageDir+imageFileName+".jpg");
-        //bitmap = Bitmap.createScaledBitmap(bitmap,360,480,true);
-        //ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        //bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        //String path = MediaStore.Images.Media.insertImage(this.getContentResolver(),bitmap,"stam",null);
-        //filePath = Uri.parse(path);
-        //image = new File(filePath.getPath(),"stam");
-
         filePath = Uri.fromFile(image);
         return image;
     }
@@ -291,11 +280,9 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
      * @param view- the chosen item.
      */
     public void createNewItem(View view) {
-        Toast.makeText(NewItem.this, String.valueOf(itemIdentify), Toast.LENGTH_SHORT).show();
         if (!(checkItemPhoto)) {
             Toast.makeText(this, "picture your item", Toast.LENGTH_SHORT).show();
         } else {
-            //itemIdentify = checkItemIdentify();
             itemPhoto02= filePath.getPath();
             if (g2 == 0) {
                 Toast.makeText(this, "Enter gender", Toast.LENGTH_SHORT).show();
@@ -317,8 +304,8 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
                     refItemsA.child(String.valueOf(g2)).child(String.valueOf(t2)).child(uId+itemIdentify).setValue(newItem);
                     refItems.child(uId+itemIdentify).setValue(newItem);
                     updateSortInfo(itemIdentify);
-                    Intent next= new Intent(this, UserProfile.class);
-                    startActivity(next);
+                    Intent moveToUserProfile1= new Intent(this, UserProfile.class);
+                    startActivity(moveToUserProfile1);
                 }
 
             }
@@ -342,7 +329,7 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(NewItem.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NewItem.this, "Item Uploaded!!", Toast.LENGTH_SHORT).show();
                         }
                     })
 
@@ -374,9 +361,6 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
      * Short description- Checks in the database what is the number of the new item that the user wants to upload.
      */
     private void checkItemIdentify(){
-        /*SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        return temp.getInt("counter",1000);*/
-
         query=refUsers.orderByChild("userId").equalTo(uId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -400,17 +384,9 @@ public class NewItem extends AppCompatActivity implements AdapterView.OnItemSele
      * @param num- the old num of the user items.
      */
     private void updateSortInfo(int num){
-        /*SharedPreferences temp=getSharedPreferences("SortingInfo",MODE_PRIVATE);
-        SharedPreferences.Editor editor=temp.edit();
-        int tempNum= num+1;
-        editor.putInt("counter",tempNum);
-        editor.commit();*/
         int temp= num+1;
-        //לבדוק שאין עם זה בעיה במקום itemIdentify
         tempUser.setItemsNum(temp);
         refUsers.child(uId).setValue(tempUser);
-
-
     }
 
     /**

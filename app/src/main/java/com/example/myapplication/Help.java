@@ -59,6 +59,10 @@ public class Help extends AppCompatActivity {
             temp = new Intent(this, NewItem.class);
             startActivity(temp);
         }
+        else if(id==R.id.UserProfile){
+            temp = new Intent(this, UserProfile.class);
+            startActivity(temp);
+        }
         return true;
     }
 }

@@ -58,6 +58,7 @@ import java.util.Date;
 public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinnerG3, spinnerT3, spinnerS13, spinnerS23,spinnerC3;
     int g3=0,t3=0,s13=555,s23=0,c3=0;
+    //g3- gender, t3- type, s13- size, s23- status, c3- color.
 
     ImageView itemPhoto3;
     EditText price3, itemDescription3;
@@ -65,7 +66,10 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
     int price003, itemIdentify3;
 
     AlertDialog.Builder photo3, adb;
+
     boolean changePhoto=false;
+
+    boolean firstTime=false;
 
     private final int PICK_IMAGE_REQUEST = 22, CAMERA_REQUEST=24;
     Uri filePath;
@@ -83,8 +87,8 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
 
         spinnerG3= (Spinner) findViewById(R.id.spinnerG3);
         spinnerT3= (Spinner) findViewById(R.id.spinnerT3);
-        spinnerS13= (Spinner) findViewById(R.id.spinnerS13);//s1==size
-        spinnerS23= (Spinner) findViewById(R.id.spinnerS23);//s2== status
+        spinnerS13= (Spinner) findViewById(R.id.spinnerS13);
+        spinnerS23= (Spinner) findViewById(R.id.spinnerS23);
         spinnerC3= (Spinner) findViewById(R.id.spinnerC3);
 
         spinnerG3.setOnItemSelectedListener(this);
@@ -92,6 +96,8 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
         spinnerS23.setOnItemSelectedListener(this);
         spinnerC3.setOnItemSelectedListener(this);
         spinnerS13.setOnItemSelectedListener(this);
+
+        changePhoto=false;
 
         ArrayAdapter<String> adp1= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, g);
         spinnerG3.setAdapter(adp1);
@@ -114,6 +120,7 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
         spinnerC3.setSelection(c3);
 
         s13= singleItem.getSize();
+
         if (s13==555){
             spinnerS13.setVisibility(View.INVISIBLE);
         }
@@ -130,7 +137,6 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
                 spinnerS13.setAdapter(adp5);
                 spinnerS13.setSelection(s13);
             }
-
         }
 
         price003= singleItem.getPrice();
@@ -176,25 +182,25 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
         }
         if (adapterView==spinnerT3){
             t3= i;
-            if ((i==0)||(i==7)||(i==8)){
-                spinnerS13.setVisibility(View.INVISIBLE);
-                s13=555;
-                //שיניתי ל555 במקום 100
+            if (firstTime) {
+                if ((i == 0) || (i == 7) || (i == 8)) {
+                    spinnerS13.setVisibility(View.INVISIBLE);
+                    s13 = 555;
+                } else if (i == 9) {
+                    spinnerS13.setVisibility(View.VISIBLE);
+                    ArrayAdapter<String> adp6 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, sS1);
+                    spinnerS13.setAdapter(adp6);
+                    s13 = 0;
+                } else {
+                    spinnerS13.setVisibility(View.VISIBLE);
+                    ArrayAdapter<String> adp6 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, sC1);
+                    spinnerS13.setAdapter(adp6);
+                    s13 = 0;
+                }
             }
-            else if (i==9){
-                spinnerS13.setVisibility(View.VISIBLE);
-                ArrayAdapter<String> adp5= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,sS1);
-                spinnerS13.setAdapter(adp5);
-                s13=0;
-            }
-            else{
-                spinnerS13.setVisibility(View.VISIBLE);
-                ArrayAdapter<String> adp5= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,sC1);
-                spinnerS13.setAdapter(adp5);
-                s13=0;
-            }
+            else
+                firstTime=true;
         }
-        //לבדוק מה אפשר לעשות כדי לא לאפס לגמרי כמשתמש משתנה Type
         if (adapterView==spinnerS13){
             s13=i;
         }
@@ -269,6 +275,12 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
             startActivityForResult(takePictureIntent, CAMERA_REQUEST);
         }
     }
+
+    /**
+     * CreateImageFile.
+     * Short description- Turns the image taken through the camera into a file in order to get the highest quality image possible.
+     * @return the file it created
+     */
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -339,7 +351,6 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
             itemPhoto03= filePath.getPath();
         else
             itemPhoto03=oldItem.getItemPhoto();
-
         if (g3 == 0) {
             Toast.makeText(this, "Enter gender", Toast.LENGTH_SHORT).show();
         } else if (t3 == 0) {
@@ -362,8 +373,8 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
 
                 refItemsA.child(String.valueOf(g3)).child(String.valueOf(t3)).child(uId + itemIdentify3).setValue(newItem);
                 refItems.child(uId + itemIdentify3).setValue(newItem);
-                Intent next = new Intent(this, UserProfile.class);
-                startActivity(next);
+                Intent moveToUserProfile4 = new Intent(this, UserProfile.class);
+                startActivity(moveToUserProfile4);
             }
         }
     }
@@ -385,7 +396,7 @@ public class UpdateItem extends AppCompatActivity implements AdapterView.OnItemS
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                            Toast.makeText(UpdateItem.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UpdateItem.this, "Item Updated!!", Toast.LENGTH_SHORT).show();
                         }
                     })
 
